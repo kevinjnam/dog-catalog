@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -15,6 +16,7 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon server/server.js",

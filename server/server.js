@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const compression = require('compression');
+const breedsController = require('./controllers/breedsController');
 
 const PORT = process.env.PORT || 8080;
 
@@ -14,6 +15,14 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.get('/breeds', breedsController.get, (req, res) => {
+  res.status(200).json(res.breeds);
+});
+
+app.post('/breeds/selected', breedsController.addSelected, (req, res) => {
+  res.status(200).json(res.selectedImages);
 });
 
 //Catch all other routes

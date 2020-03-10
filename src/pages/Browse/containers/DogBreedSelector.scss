@@ -1,14 +1,17 @@
 .dog-breed-selector {
+  background-color: lightgrey;
   display: flex;
   flex-direction: column;
 
   height: 30%;
 
   & h4 {
+    text-align: center;
     padding: 0.5rem;
     margin-bottom: 0.3rem;
     min-height: 1.4rem;
     font-size: 1.2rem;
+    border-bottom: 1px solid black;
   }
 
   & .search {
@@ -17,8 +20,9 @@
     align-items: center;
 
     border-bottom: 1px solid lightgrey;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
     font-size: 1.9rem;
+    margin-top: 0.2rem;
     height: 2rem;
     cursor: pointer;
   }
