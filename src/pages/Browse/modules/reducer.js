@@ -1,5 +1,6 @@
 const initialState = {
-  defaultList: []
+  imageResultsList: [],
+  allBreedsList: []
 };
 
 export const dogs = (state = initialState, action) => {
