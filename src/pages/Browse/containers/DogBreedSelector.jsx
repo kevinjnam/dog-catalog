@@ -19,9 +19,19 @@ export const DogBreedSelector = ({ breedsList, performSearch }) => {
     }
     setSelectedBreeds(newSelected);
   };
+
   const handleSearch = () => {
     performSearch(selectedBreeds);
   };
+
+  const handleClearAll = () => {
+    setSelectedBreeds([]);
+  };
+
+  const handleSelectAll = () => {
+    setSelectedBreeds(breedsList);
+  };
+
   return (
     <div className='dog-breed-selector'>
       <h4> Your Selected Breeds:</h4>
@@ -36,8 +46,10 @@ export const DogBreedSelector = ({ breedsList, performSearch }) => {
         list={notSelectedBreeds}
         selectBreed={selectBreed}
       />
-      <div className='search' onClick={handleSearch}>
-        Search
+      <div className='search'>
+        <div onClick={handleSelectAll}>Select All </div>
+        <div onClick={handleSearch}> Search </div>
+        <div onClick={handleClearAll}> Clear All</div>
       </div>
     </div>
   );
