@@ -44,6 +44,7 @@ export const fetchSelectedFailed = error => ({
 export const searchSelectedBreeds = selectedList => {
   return (dispatch, getState) => {
     if (selectedList.length < 1) {
+      dispatch(fetchSelectedSuccessful([]));
       return;
     }
     dispatch(fetchSelectedStarted());

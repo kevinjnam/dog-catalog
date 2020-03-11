@@ -21,10 +21,14 @@ export const DogListContainer = () => {
     const url = images[i];
     const currentBreed = getBreedName(url);
     if (currentBreed !== breedName) {
-      imagesJSX.push(<Divider key={currentBreed} item={currentBreed} />);
+      imagesJSX.push(
+        <Divider key={`${currentBreed}-${i}`} item={currentBreed} />
+      );
       breedName = currentBreed;
     }
-    imagesJSX.push(<DogImage key={url} breed={currentBreed} url={url} />);
+    imagesJSX.push(
+      <DogImage key={`${url}-${i}`} breed={currentBreed} url={url} />
+    );
   }
   return <div className='dog-list-container'>{imagesJSX}</div>;
 };
