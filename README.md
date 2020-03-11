@@ -18,4 +18,6 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Misc.
 
-- The action and reducer files are co-located with their test files. My general testing strategy is to focus on functional integration tests then to write e2e tests. By following the testing trophy method (by Kent C. Dodds), I like having a strong foundation of integration and e2e tests and reserver unit testing components with complex logic and redux state.
+- The action and reducer files are co-located with their test files.
+
+- My general testing strategy is to focus on functional integration tests then to write e2e tests. By following the testing trophy method (by Kent C. Dodds), I like having a strong foundation of integration and e2e tests and reserve unit testing components with complex logic and redux state.
