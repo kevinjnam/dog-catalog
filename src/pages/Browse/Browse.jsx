@@ -13,7 +13,7 @@ export const Browse = () => {
 
   useEffect(() => {
     dispatch(fetchBreeds());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='browse'>

@@ -11,6 +11,7 @@ const initialState = {
   allBreedsList: [],
   selectedImages: [],
   isLoadingBreeds: false,
+  isLoadingSelected: false,
   error: null
 };
 
@@ -41,7 +42,8 @@ export const dogs = (state = initialState, action) => {
     case FETCH_SELECTED_FAILED:
       return {
         ...state,
-        isLoadingSelected: false
+        isLoadingSelected: false,
+        error: action.error
       };
     case FETCH_SELECTED_SUCCESSFUL:
       return {

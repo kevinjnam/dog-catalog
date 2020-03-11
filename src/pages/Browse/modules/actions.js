@@ -7,12 +7,15 @@ import {
   FETCH_SELECTED_SUCCESSFUL
 } from './constants';
 
-const fetchBreedsStarted = () => ({ type: FETCH_BREEDS_START });
-const fetchBreedsSuccessful = breedsData => ({
+export const fetchBreedsStarted = () => ({ type: FETCH_BREEDS_START });
+export const fetchBreedsSuccessful = breedsData => ({
   type: FETCH_BREEDS_SUCCESSFUL,
   breedsList: breedsData
 });
-const fetchBreedsFailed = error => ({ type: FETCH_BREEDS_FAILED, error });
+export const fetchBreedsFailed = error => ({
+  type: FETCH_BREEDS_FAILED,
+  error
+});
 
 export const fetchBreeds = () => {
   return (dispatch, getState) => {
@@ -28,12 +31,15 @@ export const fetchBreeds = () => {
   };
 };
 
-const fetchSelectedStarted = () => ({ type: FETCH_SELECTED_START });
-const fetchSelectedSuccessful = selectedList => ({
+export const fetchSelectedStarted = () => ({ type: FETCH_SELECTED_START });
+export const fetchSelectedSuccessful = selectedList => ({
   type: FETCH_SELECTED_SUCCESSFUL,
   selectedList
 });
-const fetchSelectedFailed = error => ({ type: FETCH_SELECTED_FAILED, error });
+export const fetchSelectedFailed = error => ({
+  type: FETCH_SELECTED_FAILED,
+  error
+});
 
 export const searchSelectedBreeds = selectedList => {
   return (dispatch, getState) => {
