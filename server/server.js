@@ -2,12 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const compression = require('compression');
+
+const cache = require('./cache');
 const breedsController = require('./controllers/breedsController');
 
 const PORT = process.env.PORT || 8080;
 
-app.use(compression());
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -21,9 +21,15 @@ app.get('/breeds', breedsController.get, (req, res) => {
   res.status(200).json(res.breeds);
 });
 
-app.post('/breeds/selected', breedsController.addSelected, (req, res) => {
-  res.status(200).json(res.selectedImages);
-});
+app.post(
+  '/breeds/selected',
+  cache.checkBreeds,
+  breedsController.addSelected,
+  cache.addBreeds,
+  (req, res) => {
+    res.status(200).json(res.selectedImages);
+  }
+);
 
 //Catch all other routes
 app.all('*', (req, res) => {

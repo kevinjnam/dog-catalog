@@ -3,7 +3,6 @@ const fetch = require('node-fetch');
 const breedsController = {};
 
 breedsController.get = async (req, res, next) => {
-  console.log('breedsController.get');
   try {
     const rawData = await fetch('https://dog.ceo/api/breeds/list/all');
     const data = await rawData.json();
@@ -21,21 +20,28 @@ breedsController.get = async (req, res, next) => {
 };
 
 breedsController.addSelected = async (req, res, next) => {
-  console.log('breedsController.selected');
   try {
+    const newCache = {};
     const breedsList = req.body.selectedList;
     const UrlMaker = breed =>
       `https://dog.ceo/api/breed/${breed.toLowerCase()}/images`;
     const breedsListUrls = breedsList.map(breed => UrlMaker(breed));
     const imagesList = await Promise.all(
       breedsListUrls.map(async url => {
+        const breedName = await getBreedName(url);
         const rawData = await fetch(url);
         const imageList = await rawData.json();
+        newCache[breedName] = imageList.message;
         return imageList.message;
       })
     );
 
-    const images = flatten(imagesList);
+    let images = flatten(imagesList);
+    if (res.selectedImages.length > 0) {
+      images = [...images, ...res.selectedImages];
+    }
+
+    res.updateCache = newCache;
     res.selectedImages = { images };
     next();
   } catch (err) {
@@ -59,6 +65,16 @@ function flatten(array) {
   }
 
   return flattened;
+}
+
+function getBreedName(url) {
+  const start = 26;
+  let end = start;
+  while (url[end] !== '/') {
+    end += 1;
+  }
+
+  return url.slice(start, end);
 }
 
 module.exports = breedsController;
