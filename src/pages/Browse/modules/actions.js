@@ -20,7 +20,7 @@ export const fetchBreedsFailed = error => ({
 export const fetchBreeds = () => {
   return (dispatch, getState) => {
     dispatch(fetchBreedsStarted());
-    fetch('/breeds')
+    return fetch('/breeds')
       .then(res => res.json())
       .then(data => {
         dispatch(fetchBreedsSuccessful(data.breedsList));
