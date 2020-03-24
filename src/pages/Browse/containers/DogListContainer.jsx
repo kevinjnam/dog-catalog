@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getImages } from '../modules/selectors';
+import { selectDog } from '../modules/actions';
 import { getBreedName } from '../../../globals/utility/utility';
 import { Divider } from '../../../components/Divider';
 import { DogImage } from '../../../components/DogImage';
@@ -8,6 +9,15 @@ import './DogListContainer.scss';
 
 export const DogListContainer = () => {
   const images = useSelector(getImages);
+  const dispatch = useDispatch();
+
+  const handleSelectDog = (breed, url) => {
+    const dog = {
+      breed,
+      url
+    };
+    dispatch(selectDog(dog));
+  };
   //if user has not searched for any breeds
   if (images.length < 1)
     return (
@@ -27,7 +37,12 @@ export const DogListContainer = () => {
       breedName = currentBreed;
     }
     imagesJSX.push(
-      <DogImage key={`${url}-${i}`} breed={currentBreed} url={url} />
+      <DogImage
+        key={`${url}-${i}`}
+        handleClick={() => handleSelectDog(currentBreed, url)}
+        breed={currentBreed}
+        url={url}
+      />
     );
   }
   return <div className='dog-list-container'>{imagesJSX}</div>;

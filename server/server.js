@@ -33,7 +33,7 @@ app.post(
 
 //Catch all other routes
 app.all('*', (req, res) => {
-  res.setStatus(404);
+  res.sendStatus(404);
 });
 
 //Global Error Handler

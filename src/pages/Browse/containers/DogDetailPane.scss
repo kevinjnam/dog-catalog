@@ -1,0 +1,16 @@
+.dog-detail-pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 300px;
+  background-color: cornsilk;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  min-height: 70vh;
+
+  & img {
+    width: 180px;
+    height: 180px;
+  }
+}

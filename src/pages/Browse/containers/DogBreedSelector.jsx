@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BreedSelector } from './BreedSelector';
 import './DogBreedSelector.scss';
 
-export const DogBreedSelector = ({ breedsList, performSearch }) => {
+export const DogBreedSelector = ({ breedsList, performSearch, isLoading }) => {
   const [selectedBreeds, setSelectedBreeds] = useState([]);
   const notSelectedBreeds = [...breedsList].filter(
     breed => !selectedBreeds.includes(breed)
@@ -21,6 +21,10 @@ export const DogBreedSelector = ({ breedsList, performSearch }) => {
   };
 
   const handleSearch = () => {
+    if (isLoading) {
+      console.log('hit');
+      return;
+    }
     performSearch(selectedBreeds);
   };
 

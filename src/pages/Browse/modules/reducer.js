@@ -4,12 +4,17 @@ import {
   FETCH_BREEDS_SUCCESSFUL,
   FETCH_SELECTED_START,
   FETCH_SELECTED_FAILED,
-  FETCH_SELECTED_SUCCESSFUL
+  FETCH_SELECTED_SUCCESSFUL,
+  SELECT_DOG
 } from './constants';
 
 const initialState = {
   allBreedsList: [],
   selectedImages: [],
+  currentDog: {
+    breed: '',
+    url: ''
+  },
   isLoadingBreeds: false,
   isLoadingSelected: false,
   error: null
@@ -50,6 +55,11 @@ export const dogs = (state = initialState, action) => {
         ...state,
         isLoadingSelected: false,
         selectedImages: action.selectedList
+      };
+    case SELECT_DOG:
+      return {
+        ...state,
+        currentDog: action.dog
       };
     default:
       return state;

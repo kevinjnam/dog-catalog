@@ -4,7 +4,8 @@ import {
   FETCH_BREEDS_SUCCESSFUL,
   FETCH_SELECTED_START,
   FETCH_SELECTED_FAILED,
-  FETCH_SELECTED_SUCCESSFUL
+  FETCH_SELECTED_SUCCESSFUL,
+  SELECT_DOG
 } from './constants';
 
 export const fetchBreedsStarted = () => ({ type: FETCH_BREEDS_START });
@@ -30,6 +31,8 @@ export const fetchBreeds = () => {
       });
   };
 };
+
+export const selectDog = dog => ({ type: SELECT_DOG, dog });
 
 export const fetchSelectedStarted = () => ({ type: FETCH_SELECTED_START });
 export const fetchSelectedSuccessful = selectedList => ({
