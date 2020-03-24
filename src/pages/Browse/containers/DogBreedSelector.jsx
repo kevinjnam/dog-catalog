@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { selectDog } from '../modules/actions';
 import { BreedSelector } from './BreedSelector';
 import './DogBreedSelector.scss';
 
 export const DogBreedSelector = ({ breedsList, performSearch, isLoading }) => {
   const [selectedBreeds, setSelectedBreeds] = useState([]);
+  const dispatch = useDispatch();
   const notSelectedBreeds = [...breedsList].filter(
     breed => !selectedBreeds.includes(breed)
   );
@@ -22,13 +25,18 @@ export const DogBreedSelector = ({ breedsList, performSearch, isLoading }) => {
 
   const handleSearch = () => {
     if (isLoading) {
-      console.log('hit');
       return;
     }
     performSearch(selectedBreeds);
   };
 
   const handleClearAll = () => {
+    const resetDog = {
+      breed: '',
+      url: ''
+    };
+
+    dispatch(selectDog(resetDog));
     setSelectedBreeds([]);
   };
 
